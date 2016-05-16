@@ -5,32 +5,56 @@ could have
 want have
 
 
-User Stories
-------------
+User Stories - Must Have
+------------------------
 As a user
 So that my information in Makers is secure
 I would like to sign up
 Acceptence Criteria
+Sign up
+Login
+Log out
 
 As a home owner
 So that I can make some £££££££
 I would like to list a space
+Acceptance Criteria
+It has a name
+it hs a description
+it has a price
+It is available (true/false)
+
+As a renter
+So I can sleep somewhere
+I would like to request a space
+Acceptance Criteria
+Button to click to request
+Confirm page
+Accomodation not available to anyone else
+
+
+User Stories - Should Have
 
 As a homeowner
 So that I can really stack the cash
 I would like to list multiple spaces
 
-As a homeowner
-Because I think I am a maketer
-I would like to name/describe/price my space
+As a homeowner 
+So I can keep track of things
+I would like to have  a calender 
+
+As a renter 
+so I can see when i am on vacay 
+I would like to have a calander to see when I am away
+
 
 As a homeowner 
 Because I am not always home
 I would like to offer a range of dates to rent
 
 As a user
-Because I am going on vacay
-I would like to request to hire a space
+Because I am going on vacay on certain days
+I would like to request to hire a space for days
 
 As a Homeowner 
 Because I don't trust people
