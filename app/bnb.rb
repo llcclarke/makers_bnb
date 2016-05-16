@@ -22,6 +22,11 @@ class Bnb < Sinatra::Base
     erb :listings
 end
 
+get '/listings/:id' do
+  @listing = Listing.all(id: params[:id])
+  erb :listing
+end
+
 
 
 
