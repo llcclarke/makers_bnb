@@ -8,10 +8,19 @@ class Bnb < Sinatra::Base
   end
 
   get '/listings/new' do
+    @listing = Listing.new
     erb :'listings/new'
   end
 
-
+  post '/listings' do
+    @listing = Listing.create(title: params[:title],
+    description: params[:description], price: params[:price])
+    redirect '/listings'
+  end
+  get '/listings' do
+    @listings = Listing.all
+    erb :listings
+end
 
 
 

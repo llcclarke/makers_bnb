@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Current Listings</title>
+  </head>
+  <body>
+    <h1>Current Listings</h1>
+    <ul id='listings'>
+      <% @listings.each do |listing| %>
+        <li>
+          Title: <%= listing.title %>
+          Description: <%= listing.description %>
+          Price: <%= listing.price %>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
