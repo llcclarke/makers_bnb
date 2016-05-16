@@ -11,30 +11,22 @@ feature 'Create new listing' do
   end
 
   scenario 'shows a new listing on the listings page' do
-    visit '/listings/new'
-    fill_in 'title', with: 'Cupboard underneath the stairs'
-    fill_in 'description', with: 'Suitable for one small nephew'
-    fill_in 'price', with: 666
+    create_listing
     click_button 'Submit'
     expect(current_path).to eq '/listings'
     expect(page).to have_content 'Cupboard underneath the stairs'
   end
 
   scenario 'increases the listing db count by one' do
-    visit '/listings/new'
-    fill_in 'title', with: 'Cupboard underneath the stairs'
-    fill_in 'description', with: 'Suitable for one small nephew'
-    fill_in 'price', with: 666
+create_listing
     expect{click_button 'Submit'}.to change(Listing, :count).by(1)
   end
 
   scenario 'starts as available' do
-    visit '/listings/new'
-    fill_in 'title', with: 'Cupboard underneath the stairs'
-    fill_in 'description', with: 'Suitable for one small nephew'
-    fill_in 'price', with: 666
+create_listing
     click_button 'Submit'
     expect(page).to have_content 'Availability: Available now'
   end
+
 
 end
