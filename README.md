@@ -1,5 +1,5 @@
 Fork me to start this Project. Once done, submit a Pull Request.
-Mst have
+Must have
 should have
 could have
 want have
@@ -39,16 +39,16 @@ As a homeowner
 So that I can really stack the cash
 I would like to list multiple spaces
 
-As a homeowner 
+As a homeowner
 So I can keep track of things
-I would like to have  a calender 
+I would like to have  a calender
 
-As a renter 
-so I can see when i am on vacay 
+As a renter
+so I can see when i am on vacay
 I would like to have a calander to see when I am away
 
 
-As a homeowner 
+As a homeowner
 Because I am not always home
 I would like to offer a range of dates to rent
 
@@ -56,7 +56,7 @@ As a user
 Because I am going on vacay on certain days
 I would like to request to hire a space for days
 
-As a Homeowner 
+As a Homeowner
 Because I don't trust people
 I would like to approve or not approve a request
 
