@@ -26,6 +26,18 @@ get '/listings/:id' do
   @listing = Listing.all(id: params[:id])
   erb :listing
 end
+# post '/listings/:id' do
+#   @listing = Listing.first(id: params[:id])
+#   @listing.is_available = false
+#   redirect '/listings/:id'
+
+# end
+
+  post '/listings/confirmation' do
+ @listing.is_available = false
+  erb :confirmation
+  end
+
 
 
 

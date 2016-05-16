@@ -27,10 +27,19 @@ feature 'making a booking' do
         expect(page).to have_button 'Request Booking'
     end
 
-    scenario 'requesting a booking changes availability' do
+    xscenario 'requesting a booking changes availability' do
       visit '/listings'
       click_link 'Title1'
       click_button 'Request Booking'
       expect(page).to have_content 'Availability: No vacancy'
+    end
+
+
+    scenario 'requesting a booking returns a confirmation page' do
+      visit '/listings'
+      click_link 'Title1'
+      click_button 'Request Booking'
+      expect(page).to have_content "You have booked "
+ click_button "lol"
     end
 end

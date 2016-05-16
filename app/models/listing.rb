@@ -5,13 +5,13 @@ class Listing
 
   include DataMapper::Resource
 
-  attr_reader :availability
+  attr_accessor :is_available
 
   property :id,           Serial
   property :title,        String
   property :description,  String
   property :price,        String
-  property :availability,   Boolean, :default => true
+  property :is_available,   Boolean, :default => true
 
 
 

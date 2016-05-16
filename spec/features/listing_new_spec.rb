@@ -22,7 +22,7 @@ create_listing
     expect{click_button 'Submit'}.to change(Listing, :count).by(1)
   end
 
-  xscenario 'starts as available' do
+  scenario 'starts as available' do
     create_listing
     click_button 'Submit'
     expect(page).to have_content 'Availability: Available now'

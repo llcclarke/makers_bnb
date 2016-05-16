@@ -1,9 +1,10 @@
 require './app/models/listing'
 
 describe 'listing' do
+  subject(:listing) {Listing.create(title: 'Title1', description: 'Description1', price: 20)}
   describe '#availability' do
     it 'starts available' do
-      expect(subject.availability).to be_true
+      expect(subject.is_available).to be_truthy
     end
   end
 end

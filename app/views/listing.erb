@@ -11,7 +11,11 @@
           Title: <%= listing.title %>
           Description: <%= listing.description %>
           Price: £<%= listing.price %>
-          Availability: <%= listing.availability %>
+          Availability: <%= listing.is_available == true ? "Available now" : "No vacancy" %>
+          <form action='/listings/confirmation' method='post'>
+          <input type='hidden' name='id' value='<%= listing.id %>'>
+          <input type='submit' value='Request Booking'>
+          </form>
         </li>
       <% end %>
     </ul>
