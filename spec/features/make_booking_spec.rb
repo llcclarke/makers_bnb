@@ -42,6 +42,6 @@ feature 'making a booking' do
       click_link 'Title1'
       click_button 'Request Booking'
       expect(page.status_code).to eq 200
-      expect(page).to have_content 'You have successfully booked Title1'
+      expect(page).to have_content 'You have successfully booked'
     end
 end
