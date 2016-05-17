@@ -1,10 +1,13 @@
 
-def sign_up
+def sign_up(username: 'joechintheking', name: 'Joe Chin',
+						email: 'joe@joe.com', password: '1234',
+						password_confirmation: '1234')
 	visit '/users/new'
-	fill_in('email', with: 'joe@joe.com')
-	fill_in('name', with: 'Joe Chin')
-	fill_in('username', with: 'joechintheking')
-	fill_in('password', with: '1234')
+	fill_in('email', with: email)
+	fill_in('name', with: name)
+	fill_in('username', with: username)
+	fill_in('password', with: password)
+	fill_in('password_confirmation', with: password_confirmation)
 	click_button('Sign Up')
 end
 
@@ -46,8 +49,3 @@ def create_listing3
     fill_in 'price', with: 666
     click_button 'Submit'
 end
-
-
-
-
-
