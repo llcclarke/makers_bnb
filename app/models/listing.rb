@@ -11,4 +11,6 @@ class Listing
   property :price,        String
   property :is_available,   Boolean, :default => true
 
+  belongs_to :user
+
 end
