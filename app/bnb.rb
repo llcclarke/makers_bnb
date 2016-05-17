@@ -22,20 +22,23 @@ class Bnb < Sinatra::Base
     erb :listings
 end
 
-get '/listings/:id' do
-  @listing = Listing.all(id: params[:id])
-  erb :listing
-end
-# post '/listings/:id' do
-#   @listing = Listing.first(id: params[:id])
-#   @listing.is_available = false
-#   redirect '/listings/:id'
+  get '/listings/:id' do
+    @listing = Listing.all(id: params[:id])
+    erb :listing
+  end
+  # post '/listings/:id' do
+  #   @listing = Listing.first(id: params[:id])
+  #   @listing.is_available = false
+  #   redirect '/listings/:id'
+  # end
 
-# end
+  post '/listings/confirm' do
+    @listing.is_available = false
+    redirect '/listings/confirmation'
+  end
 
-  post '/listings/confirmation' do
- @listing.is_available = false
-  erb :confirmation
+  get 'listings/confirmation' do
+    erb :'listings/confirmation'
   end
 
 
