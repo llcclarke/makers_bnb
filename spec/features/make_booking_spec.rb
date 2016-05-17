@@ -44,4 +44,11 @@ feature 'making a booking' do
       expect(page.status_code).to eq 200
       expect(page).to have_content 'You have successfully booked'
     end
+
+    scenario 'has a booking page' do
+    visit '/bookings/new'
+    expect(page).to have_content 'Check in date'
+    expect(page).to have_content 'Check out date'
+    expect(page).to have_button 'Request'
+    end
 end
