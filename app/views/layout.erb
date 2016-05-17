@@ -1,0 +1,15 @@
+<html>
+	<head>
+	
+	</head>
+
+	<body>
+		<% if current_user %>
+			welcome <%= current_user.name %>
+			<form method='post' action='/session'>
+			<input type='hidden' name='_method' value='delete'>
+			<input type='submit' value='sign out'>
+		<% end %>
+		<%= yield %>
+	</body>
+</html>
