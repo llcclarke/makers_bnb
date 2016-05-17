@@ -4,6 +4,8 @@ require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 require_relative 'models/user'
 require_relative 'models/listing'
+require_relative 'models/booking'
+
 
 class Bnb < Sinatra::Base
 
@@ -148,9 +150,13 @@ end
 
 
 
-
+	post '/bookings/new' do
+		@bookings = Booking.create(check_in_date: params[:check_in_date],
+		check_out_date: params[:check_out_date])
+	end
 
 	get '/bookings/new' do
+		@bookings = Booking.new
 		erb :'bookings/new'
 	end
 

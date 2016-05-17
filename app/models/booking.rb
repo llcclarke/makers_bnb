@@ -5,7 +5,11 @@ class Booking
 
   include DataMapper::Resource
   property :id,         Serial
-  property :start_date, Date
-  property :end_date,   Date
-  
+  property :start_date, String
+  property :end_date,   String
+
+
+# def check_date(date)
+#   date
+# end
 end

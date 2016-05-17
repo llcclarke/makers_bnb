@@ -51,4 +51,12 @@ feature 'making a booking' do
     expect(page).to have_content 'Check out date'
     expect(page).to have_button 'Request'
     end
+
+    scenario 'cannont book a date in the past' do
+      visit '/bookings/new'
+      fill_in('check_in_date', with: 17/04/1984)
+      expect(page).to have_content 'Are you a time traveller?'
+
+    end
+
 end
