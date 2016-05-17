@@ -6,13 +6,14 @@ require File.join(File.dirname(__FILE__), '..', 'app/bnb.rb')
 
 RACK_ENV = ENV['RACK_ENV']
 
-require 'web_helper'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
 require './app/models/listing'
 require './app/bnb'
+require 'helpers/session'
+require 'web_helper'
 
 
 Capybara.app = Bnb
