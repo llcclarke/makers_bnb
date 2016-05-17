@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View listing</title>
+  </head>
+  <body>
+    <ul id='listings'>
+        <li>
+          Title: <%= @listing.title %>
+          Description: <%= @listing.description %>
+          Price: £<%= @listing.price %>
+          Availability: <%= @listing.is_available ? "Available now" : "No vacancy" %>
+          <form action='/confirm' method='post'>
+          <input type='hidden' name='id' value='<%= @listing.id %>'>
+          <input type='submit' value='Request Booking'>
+          </form>
+        </li>
+    </ul>
+  </body>
+</html>

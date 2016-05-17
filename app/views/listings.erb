@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Current Listings</title>
+  </head>
+  <body>
+    <h1>Current Listings</h1>
+    <ul id='listings'>
+      <% @listings.each do |listing| %>
+        <li>
+          Title: <a href="<%= "/listings/" + listing.id.to_s %>" ><%= listing.title %></a>
+          Description: <%= listing.description %>
+          Price: £<%= listing.price %>
+          Availability: <%= listing.is_available ? "Available now" : "No vacancy" %>
+        </li>
+      <% end %>
+    </ul>
+  </body>
+</html>
