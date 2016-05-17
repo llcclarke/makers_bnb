@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] = 'development'
 require 'sinatra/base'
 require_relative 'data_mapper_setup'
+require './app/models/listing'
 
 class Bnb < Sinatra::Base
   get '/' do
@@ -19,26 +20,24 @@ class Bnb < Sinatra::Base
   end
   get '/listings' do
     @listings = Listing.all
+
     erb :listings
 end
 
   get '/listings/:id' do
-    @listing = Listing.all(id: params[:id])
+    @listing = Listing.first(id: params[:id])
     erb :listing
   end
-  # post '/listings/:id' do
-  #   @listing = Listing.first(id: params[:id])
-  #   @listing.is_available = false
-  #   redirect '/listings/:id'
-  # end
 
-  post '/listings/confirm' do
-    @listing.is_available = false
-    redirect '/listings/confirmation'
+
+  post '/confirm' do
+    @listing = Listing.first(id: params[:id])
+    @listing.update(:is_available => false)
+    redirect '/confirmation'
   end
 
-  get 'listings/confirmation' do
-    erb :'listings/confirmation'
+  get '/confirmation' do
+    erb :confirmation
   end
 
 

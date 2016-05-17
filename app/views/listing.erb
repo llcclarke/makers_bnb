@@ -6,18 +6,16 @@
   </head>
   <body>
     <ul id='listings'>
-      <% @listing.each do |listing| %>
         <li>
-          Title: <%= listing.title %>
-          Description: <%= listing.description %>
-          Price: £<%= listing.price %>
-          Availability: <%= listing.is_available == true ? "Available now" : "No vacancy" %>
-          <form action='/listings/confirm' method='post'>
-          <input type='hidden' name='id' value='<%= listing.id %>'>
+          Title: <%= @listing.title %>
+          Description: <%= @listing.description %>
+          Price: £<%= @listing.price %>
+          Availability: <%= @listing.is_available ? "Available now" : "No vacancy" %>
+          <form action='/confirm' method='post'>
+          <input type='hidden' name='id' value='<%= @listing.id %>'>
           <input type='submit' value='Request Booking'>
           </form>
         </li>
-      <% end %>
     </ul>
   </body>
 </html>
