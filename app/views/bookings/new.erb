@@ -1,6 +1,10 @@
 <h1>Make a booking</h1>
-<form action="/bookings" method="post">
-  <label for="start-date">
-    Start Date: <input name="start-date" type="date">
-  </label>gi
+<form action="/bookings/new" method="post">
+  <label for="check-in-date">
+    Check in date: <input name="check-in-date" type="date">
+  </label>
+  <label for="check-out-date">
+    Check out date: <input name="check-out-date" type="date">
+  </label>
+  <input type="submit" value="Request">
 </form>
