@@ -8,6 +8,7 @@ require_relative 'models/listing'
 class Bnb < Sinatra::Base
 
 	enable :sessions
+	set :session_secret, 'super secret'
 	register Sinatra::Flash
 	use Rack::MethodOverride
 	helpers do
@@ -22,7 +23,7 @@ class Bnb < Sinatra::Base
 
 
 
-	
+
 
 
 
@@ -255,7 +256,8 @@ class Bnb < Sinatra::Base
 		user = User.create(email: params[:email],
 							name: params[:name],
 							username: params[:username],
-							password: params[:password])
+							password: params[:password],
+							password_confirmation: params[:password_confirmation])
 		redirect '/'
 	end
 
