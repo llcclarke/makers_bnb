@@ -9,6 +9,8 @@ class User
 	property :username, String
 	property :password, String
 
+	has n, :listings
+
 	def self.authenticate(email, password)
 		user = self.first(email: email, password: password)
 		if user

@@ -47,6 +47,10 @@ As a renter
 so I can see when i am on vacay
 I would like to have a calander to see when I am away
 
+As a renter
+So I can see where I am staying
+I would like to see the place on a map
+
 
 As a homeowner
 Because I am not always home

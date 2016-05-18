@@ -1,8 +1,10 @@
 feature 'making a booking' do
 
   before(:each) do
-    Listing.create(title: 'Title1', description: 'Description1', price: 20)
-    Listing.create(title: 'Title2', description: 'Description2', price: 50)
+    sign_up
+    sign_in
+    create_listing2
+    create_listing3
   end
 
 
@@ -31,6 +33,8 @@ feature 'making a booking' do
       visit '/listings'
       click_link 'Title1'
       click_button 'Request Booking'
+      make_booking
+      click_button 'Submit'
       visit '/listings'
       click_link 'Title1'
       expect(page).to have_content 'Availability: No vacancy'
@@ -41,6 +45,7 @@ feature 'making a booking' do
       visit '/listings'
       click_link 'Title1'
       click_button 'Request Booking'
+      make_booking
       expect(page.status_code).to eq 200
       expect(page).to have_content 'You have successfully booked'
     end
@@ -54,7 +59,7 @@ feature 'making a booking' do
 
     scenario 'cannont book a date in the past' do
       visit '/bookings/new'
-      fill_in('check_in_date', with: 17/04/1984)
+      fill_in 'check_in_date', with: '17/04/1984'
       expect(page).to have_content 'Are you a time traveller?'
 
     end
