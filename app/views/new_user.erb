@@ -4,6 +4,17 @@
 </head>
 
 <body>
+	<% if flash.now[:notice] %>
+		<% flash.now[:notice].each do |notice| %>
+			<div id='error_title'>
+				Please refer to the following errors:
+			</div>
+			<ul>
+				<%= notice %>
+			</ul>	
+		<% end %>
+	<% end %>
+
 	<form action='/users/new' method='post'>
 		e-mail : <input type='text' name='email'><br>
 		name : <input type='text' name='name'><br>
