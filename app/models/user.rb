@@ -13,6 +13,7 @@ class User
 	property :password_digest, String, length: 60
 
 	has n, :listings
+	has n, :bookings
 
 	def self.authenticate(email, password)
 		user = first(email: email)

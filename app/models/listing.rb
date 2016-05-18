@@ -10,7 +10,7 @@ class Listing
   property :description,  String
   property :price,        String
 
-
+  has n, :bookings
   belongs_to :user
 
 end

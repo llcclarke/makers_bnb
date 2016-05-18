@@ -5,9 +5,11 @@ class Booking
 
   include DataMapper::Resource
   property :id,         Serial
-  property :check_in_date, Date
-  property :check_out_date,   Date
+  property :check_in_date, String
+  property :check_out_date,   String
 
+  belongs_to :user
+  belongs_to :listing
 
   def self.check_date(date)
     today_date = DateTime.now

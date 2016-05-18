@@ -46,21 +46,24 @@ feature 'making a booking' do
       click_link 'Title1'
       click_button 'Request Booking'
       make_booking
-      expect(page.status_code).to eq 200
       expect(page).to have_content 'You have successfully booked'
     end
 
     scenario 'has a booking page' do
-    visit '/bookings/new'
-    expect(page).to have_content 'Check in date'
-    expect(page).to have_content 'Check out date'
-    expect(page).to have_button 'Request'
+      visit '/listings'
+      click_link 'Title1'
+      click_button 'Request Booking'
+      expect(page).to have_content 'Check in date'
+      expect(page).to have_content 'Check out date'
+      expect(page).to have_button 'Request'
     end
 
     scenario 'cannont book a date in the past' do
-      visit '/bookings/new'
-      fill_in 'check_in_date', with: '17/04/1984'
-      fill_in 'check_out_date', with: '18/04/1984'
+      visit '/listings'
+      click_link 'Title1'
+      click_button 'Request Booking'
+      fill_in 'check_in_date', with: '10/10/2015'
+      fill_in 'check_out_date', with: '20/10/2015'
       click_button 'Request'
       expect(page).to have_content 'Are you a time traveller?'
 

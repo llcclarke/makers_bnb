@@ -81,7 +81,7 @@ class Bnb < Sinatra::Base
 								price: params[:price])
 		@current_user.listings << listing
 		@current_user.save
-	redirect '/listings'
+		redirect '/listings'
 	end
 
 	get '/listings' do
@@ -91,7 +91,8 @@ class Bnb < Sinatra::Base
 	end
 
 	get '/listings/:id' do
-		@listing = Listing.first(id: params[:id])
+		session[:listing_id] = params[:id]
+		@listing = Listing.first(id: session[:listing_id])
 		erb :listing
 	end
 
@@ -106,15 +107,19 @@ class Bnb < Sinatra::Base
 	end
 
 	get '/bookings/new' do
-		@listing = Listing.first(id: params[:id])
-		@bookings = Booking.new
+		@listing = Listing.first(id: session[:listing_id])
 		erb :'bookings/new'
 	end
 
 	post '/bookings/new' do
 		if Booking.check_date(params[:check_in_date])
-			@bookings = Booking.create(check_in_date: params[:check_in_date],
+			@current_user = User.first(id: session[:user_id])
+			@listing = Listing.first(id: session[:listing_id])
+			booking = Booking.create(check_in_date: params[:check_in_date],
 			check_out_date: params[:check_out_date])
+			@current_user.bookings << booking
+			@listing.bookings << booking
+			@current_user.save
 			redirect '/confirmation'
 		else
 			flash.keep[:errors] = ['Are you a time traveller?']
