@@ -27,13 +27,22 @@ feature 'sign up' do
 
   scenario 'I cannot sign up without an email' do
     expect{ sign_up(email: nil)}.not_to change(User, :count)
+    expect(page).to have_content('Email must not be blank')
   end
 
   scenario 'I cannot sign up without a username' do
     expect { sign_up(username: nil)}.not_to change(User, :count)
+    expect(page).to have_content('Username must not be blank')
   end
   scenario 'I cannot sign up without a name' do
     expect { sign_up(name: nil)}.not_to change(User, :count)
+    expect(page).to have_content('Name must not be blank')
+  end
+  scenario 'After an unsuccessful sign up, the correct fields are saved' do
+  	sign_up(password_confirmation: '1235')
+  	expect(find_field('email').value).to have_content('joe@joe.com')
+  	expect(find_field('name').value).to have_content('Joe Chin')
+  	expect(find_field('username').value).to have_content('joechintheking')
   end
 
 end
