@@ -1,5 +1,21 @@
 feature 'Create new listing' do
 
+  scenario 'only list space if signed in' do
+    sign_out
+    visit '/listings/new'
+    expect(current_path).to eq '/'
+    expect(page).to have_content 'You must be signed in to post a new listing'
+    sign_up
+    sign_in
+    visit '/listings/new'
+    expect(page).to have_content 'List a new space'
+  end
+
+  before :each do
+    sign_up
+    sign_in
+  end
+
   scenario 'has new listing page' do
     visit '/listings/new'
     expect(page.status_code).to eq (200)

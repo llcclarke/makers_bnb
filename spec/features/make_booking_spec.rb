@@ -1,8 +1,10 @@
 feature 'making a booking' do
 
   before(:each) do
-    Listing.create(title: 'Title1', description: 'Description1', price: 20)
-    Listing.create(title: 'Title2', description: 'Description2', price: 50)
+    sign_up
+    sign_in
+    create_listing2
+    create_listing3
   end
 
 

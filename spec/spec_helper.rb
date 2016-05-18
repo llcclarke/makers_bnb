@@ -13,7 +13,6 @@ require 'database_cleaner'
 require './app/models/listing'
 require './app/bnb'
 require 'helpers/session'
-require 'web_helper'
 
 
 Capybara.app = Bnb

@@ -22,6 +22,231 @@ class Bnb < Sinatra::Base
 
 
 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	get '/users/new' do
 		erb :new_user
 	end
@@ -49,6 +274,7 @@ class Bnb < Sinatra::Base
 			erb :sign_in
 		end
 	end
+
 	delete '/session' do
 		session[:user_id] = nil
 		flash.keep[:notice] = 'Thanks for using BnB'
@@ -56,38 +282,47 @@ class Bnb < Sinatra::Base
 	end
 
 
-  get '/listings/new' do
-    @listing = Listing.new
-    erb :'listings/new'
-  end
+	get '/listings/new' do
+		unless current_user
+			flash.keep[:errors] = ["You must be signed in to post a new listing"]
+			redirect '/'
+		end
+		@listing = Listing.new
+		erb :'listings/new'
+	end
 
-  post '/listings' do
-    @listing = Listing.create(title: params[:title],
-    description: params[:description], price: params[:price])
-    redirect '/listings'
-  end
-  get '/listings' do
-    @listings = Listing.all
+	post '/listings' do
+		@current_user = User.first(id: session[:user_id])
+		listing = Listing.create(title: params[:title],
+								description: params[:description],
+								price: params[:price])
+		@current_user.listings << listing
+		@current_user.save
+	redirect '/listings'
+	end
 
-    erb :listings
-end
+	get '/listings' do
+		@listings = Listing.all
 
-  get '/listings/:id' do
-    @listing = Listing.first(id: params[:id])
-    erb :listing
-  end
+		erb :listings
+	end
+
+	get '/listings/:id' do
+		@listing = Listing.first(id: params[:id])
+		erb :listing
+	end
 
 
-  post '/confirm' do
-    @listing = Listing.first(id: params[:id])
-    @listing.update(:is_available => false)
-    redirect '/confirmation'
-  end
+	post '/confirm' do
+		@listing = Listing.first(id: params[:id])
+		@listing.update(:is_available => false)
+		redirect '/confirmation'
+	end
 
-  get '/confirmation' do
-    erb :confirmation
-  end
+	get '/confirmation' do
+		erb :confirmation
+	end
 
-  # start the server if ruby file executed directly
-  run! if app_file == $0
+	# start the server if ruby file executed directly
+	run! if app_file == $0
 end
