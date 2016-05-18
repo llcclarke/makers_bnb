@@ -11,7 +11,7 @@
           Description: <%= @listing.description %>
           Price: £<%= @listing.price %>
             <form action='/bookings/new' method='get'>
-          <input type='hidden' name='id' value='<%= @listing.id %>'>
+          <input type='hidden' name='listing_id' value='<%= @listing.id %>'>
           <input type='submit' value='Request Booking'>
           </form>
         </li>
