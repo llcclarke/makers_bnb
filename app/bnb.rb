@@ -87,12 +87,12 @@ class Bnb < Sinatra::Base
 		erb :listing
 	end
 
-	post '/confirm' do
-		@listing = Listing.first(id: params[:id])
-		@listing.update(:is_available => false)
-		redirect '/confirmation'
-	end
-
+	# post '/confirm' do
+	# 	@listing = Listing.first(id: params[:id])
+	# 	@listing.update(:is_available => false)
+	# 	redirect '/confirmation'
+	# end
+	#
 	get '/confirmation' do
 		erb :confirmation
 	end
@@ -104,8 +104,14 @@ class Bnb < Sinatra::Base
 	end
 
 	post '/bookings/new' do
-		@bookings = Booking.create(check_in_date: params[:check_in_date],
-		check_out_date: params[:check_out_date])
+		if Booking.check_date(params[:check_in_date])
+			@bookings = Booking.create(check_in_date: params[:check_in_date],
+			check_out_date: params[:check_out_date])
+			redirect '/confirmation'
+		else
+			flash.keep[:errors] = ['Are you a time traveller?']
+			redirect '/bookings/new'
+		end
 	end
 
   # start the server if ruby file executed directly

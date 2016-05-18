@@ -9,7 +9,9 @@ class Booking
   property :check_out_date,   Date
 
 
-# def check_date(date)
-#   date
-# end
+  def self.check_date(date)
+    today_date = DateTime.now
+    date_to_check = Date.parse(date)
+    date_to_check >= today_date
+  end
 end

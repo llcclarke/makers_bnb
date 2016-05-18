@@ -1,3 +1,8 @@
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
 <h1>Make a booking</h1>
 <form action="/bookings/new" method="post">
   <label for="check_in_date">
