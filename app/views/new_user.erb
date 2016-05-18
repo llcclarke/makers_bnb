@@ -4,13 +4,37 @@
 </head>
 
 <body>
-	<form action='/users/new' method='post'>
-		e-mail : <input type='text' name='email'><br>
-		name : <input type='text' name='name'><br>
-		username : <input type='text' name='username'><br>
-		password : <input type='password' name='password'><br>
-		<input type='submit' value='Sign Up'>
-	</form>
+	<% if flash.now[:notice] %>
+
+		<% flash.now[:notice].each do |notice| %>
+			<div id='error_title'>
+				Please refer to the following errors:
+			</div>
+			<ul>
+				<%= notice %>
+			</ul>	
+		<% end %>
+		<form action='/users/new' method='post'>
+			e-mail : <input type='text' name='email' value='<%= @user.email %>'><br>
+			name : <input type='text' name='name' value='<%= @user.name %>'><br>
+			username : <input type='text' name='username' value='<%= @user.username %>'><br>
+			password : <input type='password' name='password'><br>
+	    	confirm password : <input type='password' name='password_confirmation'><br>
+			<input type='submit' value='Sign Up'>
+		</form>
+
+	<% else %>
+
+		<form action='/users/new' method='post'>
+			e-mail : <input type='text' name='email'><br>
+			name : <input type='text' name='name'><br>
+			username : <input type='text' name='username'><br>
+			password : <input type='password' name='password'><br>
+	    confirm password : <input type='password' name='password_confirmation'><br>
+			<input type='submit' value='Sign Up'>
+		</form>
+
+	<% end %>
 </body>
 
 </html>

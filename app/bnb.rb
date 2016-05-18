@@ -10,6 +10,7 @@ require_relative 'models/booking'
 class Bnb < Sinatra::Base
 
 	enable :sessions
+	set :session_secret, 'super secret'
 	register Sinatra::Flash
 	use Rack::MethodOverride
 	helpers do
@@ -22,16 +23,253 @@ class Bnb < Sinatra::Base
 		erb :index
 	end
 
+<<<<<<< HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+>>>>>>> master
 	get '/users/new' do
 		erb :new_user
 	end
 
 	post '/users/new' do
-		user = User.create(email: params[:email],
+		@user = User.create(email: params[:email],
 							name: params[:name],
 							username: params[:username],
-							password: params[:password])
-		redirect '/'
+							password: params[:password],
+							password_confirmation: params[:password_confirmation])
+		if @user.save
+			session[:user_id] = @user.id
+			redirect '/'
+		else
+			flash.now[:notice] = @user.errors.full_messages
+			erb :new_user
+		end
 	end
 
 	get '/session/new' do
