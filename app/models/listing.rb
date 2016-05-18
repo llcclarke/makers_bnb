@@ -9,7 +9,7 @@ class Listing
   property :title,        String
   property :description,  String
   property :price,        String
-  property :is_available,   Boolean, :default => true
+
 
   belongs_to :user
 

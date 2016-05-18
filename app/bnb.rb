@@ -4,6 +4,8 @@ require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 require_relative 'models/user'
 require_relative 'models/listing'
+require_relative 'models/booking'
+
 
 class Bnb < Sinatra::Base
 
@@ -19,233 +21,6 @@ class Bnb < Sinatra::Base
 	get '/' do
 		erb :index
 	end
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	get '/users/new' do
 		erb :new_user
@@ -312,17 +87,34 @@ class Bnb < Sinatra::Base
 		erb :listing
 	end
 
-
-	post '/confirm' do
-		@listing = Listing.first(id: params[:id])
-		@listing.update(:is_available => false)
-		redirect '/confirmation'
-	end
-
+	# post '/confirm' do
+	# 	@listing = Listing.first(id: params[:id])
+	# 	@listing.update(:is_available => false)
+	# 	redirect '/confirmation'
+	# end
+	#
 	get '/confirmation' do
 		erb :confirmation
 	end
 
-	# start the server if ruby file executed directly
-	run! if app_file == $0
+	get '/bookings/new' do
+		@listing = Listing.first(id: params[:id])
+		@bookings = Booking.new
+		erb :'bookings/new'
+	end
+
+	post '/bookings/new' do
+		if Booking.check_date(params[:check_in_date])
+			@bookings = Booking.create(check_in_date: params[:check_in_date],
+			check_out_date: params[:check_out_date])
+			redirect '/confirmation'
+		else
+			flash.keep[:errors] = ['Are you a time traveller?']
+			redirect '/bookings/new'
+		end
+	end
+
+  # start the server if ruby file executed directly
+  run! if app_file == $0
+
 end
