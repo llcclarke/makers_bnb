@@ -12,7 +12,6 @@
           Title: <a href="<%= "/listings/" + listing.id.to_s %>" ><%= listing.title %></a>
           Description: <%= listing.description %>
           Price: £<%= listing.price %>
-          Availability: <%= listing.is_available ? "Available now" : "No vacancy" %>
         </li>
       <% end %>
     </ul>
