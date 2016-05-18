@@ -21,4 +21,19 @@ feature 'sign up' do
   	expect(page).to have_content('Email is already taken')
   end
 
+  scenario 'I cannot sign up with an invalid email' do
+    expect{ sign_up(email: 'user@email') }.not_to change(User, :count)
+  end
+
+  scenario 'I cannot sign up without an email' do
+    expect{ sign_up(email: nil)}.not_to change(User, :count)
+  end
+
+  scenario 'I cannot sign up without a username' do
+    expect { sign_up(username: nil)}.not_to change(User, :count)
+  end
+  scenario 'I cannot sign up without a name' do
+    expect { sign_up(name: nil)}.not_to change(User, :count)
+  end
+
 end
