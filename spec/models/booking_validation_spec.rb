@@ -24,4 +24,17 @@ describe 'Booking' do
       expect(BookingValidation.new.date_valid?('17/04/2016','20/04/2016','15/04/2016','16/04/2016')).to be_truthy
     end
   end
+  describe "#right_order?" do
+    it 'returns true if the check-in date is before the check-out date' do
+      expect(BookingValidation.new.right_order?('17/04/2016','20/04/2016')).to be_truthy
+    end
+    it 'returns false if the check-in date is after the check-out date' do
+      expect(BookingValidation.new.right_order?('20/04/2016','17/04/2016')).to be_falsey
+    end
+  end
+  describe "#super_check?" do
+    it 'returns true if all the guard clauses are avoided' do
+      expect(BookingValidation.new.super_check?('17/04/2016','20/04/2016','25/04/2016','27/04/2016'))
+    end
+  end
 end
