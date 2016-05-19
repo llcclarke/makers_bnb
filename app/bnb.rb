@@ -104,6 +104,7 @@ class Bnb < Sinatra::Base
 	end
 
 	post 'listings/results' do
+		@listings = Listing.all(check_in_date:)
 		erb :'listings/results'
 	end
 
