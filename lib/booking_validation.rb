@@ -20,7 +20,15 @@ class BookingValidation
       new_end > new_start
     end
 
-    def super_check?(new_start, new_end, check_start, check_end)
-      check_date?(new_start) && right_order?(new_start, new_end) && date_valid?(new_start, new_end, check_start, check_end)
+    def super_check?(new_start, new_end)
+      check_date?(new_start) && right_order?(new_start, new_end)
+    end
+
+    def validation_loop(new_start, new_end, all_bookings)
+      arr = []
+      all_bookings.each do |booking|
+        arr << date_valid?(new_start, new_end, booking.check_in_date, booking.check_out_date)
+      end
+      !arr.include? false
     end
 end

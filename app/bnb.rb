@@ -115,17 +115,19 @@ class Bnb < Sinatra::Base
 
 	post '/bookings/new' do
 			@booking_validation = BookingValidation.new
-		if @booking_validation.check_date?(params[:check_in_date])
-			@current_user = User.first(id: session[:user_id])
 			@listing = Listing.first(id: session[:listing_id])
+			@bookings = @listing.bookings
+			p @bookings
+		if @booking_validation.super_check?(params[:check_in_date], params[:check_out_date]) && @booking_validation.validation_loop(params[:check_in_date], params[:check_out_date], @bookings)
 			booking = Booking.create(check_in_date: params[:check_in_date],
 			check_out_date: params[:check_out_date])
-			@current_user.bookings << booking
+			current_user.bookings << booking
 			@listing.bookings << booking
 			@current_user.save
+			@listing.save
 			redirect '/confirmation'
 		else
-			flash.keep[:errors] = ['Are you a time traveller?']
+			flash.keep[:errors] = ['Your booking is invalid']
 			redirect '/bookings/new'
 		end
 	end
