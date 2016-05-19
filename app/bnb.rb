@@ -99,12 +99,13 @@ class Bnb < Sinatra::Base
 		erb :listing
 	end
 
-	get 'listings/search' do
+	get '/listing/search' do
 		erb :'listings/search'
 	end
 
-	post 'listings/results' do
-		@listings = Listing.all(check_in_date:)
+	post '/listing/results' do
+		@booking_val = BookingValidation.new
+		@listings = @booking_val.listing_loop(params[:check_in_date], params[:check_out_date], Listing.all)
 		erb :'listings/results'
 	end
 

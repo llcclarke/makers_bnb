@@ -31,4 +31,18 @@ class BookingValidation
       end
       !arr.include? false
     end
+
+    def listing_loop(new_start, new_end, all_listings)
+      listing_arr = []
+      all_listings.each do |listing|
+        booking_arr = []
+        listing.bookings.each do |booking|
+          booking_arr << date_valid?(new_start, new_end, booking.check_in_date, booking.check_out_date)
+        end
+        if !booking_arr.include? false
+          listing_arr << listing
+        end
+      end
+      listing_arr
+    end
 end

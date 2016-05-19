@@ -38,4 +38,15 @@ describe 'Booking' do
       expect(booking_val.super_check?('17/12/2016','20/12/2016')).to be_truthy
     end
   end
+  describe "#listing_loop" do
+    let(:all_listings) { [listing1, listing2] }
+    let(:listing1)     { double(:listing, bookings: [booking1, booking2]) }
+    let(:listing2)     { double(:listing, bookings: [booking3]) }
+    let(:booking1)     { double(:booking, check_in_date: '10/12/2016', check_out_date: '11/12/2016') }
+    let(:booking2)     { double(:booking, check_in_date: '14/12/2016', check_out_date: '15/12/2016') }
+    let(:booking3)     { double(:booking, check_in_date: '11/12/2016', check_out_date: '15/12/2016') }
+    it 'returns the dates that are available for the dates searched' do
+      expect(booking_val.listing_loop('12/12/2016','13/12/2016',all_listings)).to eq([listing1])
+    end
+  end
 end

@@ -5,18 +5,24 @@
 </head>
 <body>
   <h1>  Search Results  </h1>
-<ul id='listings'>
-  Title: <%= @listing.title%>
-  <br>
+  <% if @listings.length > 0 %>
+    <ul id='listings'>
+    <% @listings.each do |listing| %>
+      <li>
+        Title: <a href="<%= "/listings/" + listing.id.to_s %>" ><%= listing.title %></a>
+        <br>
+        Description <%= listing.description %>
+        <br>
+        Price <%= listing.price %>
+        <br>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
 
+  <form action='/'>
+    <input type='submit' value='Home'>
+  </form>
 
-
-<!--  <ul id='listings'>
-          Title: <%= @listing.title %>
-          <br>
-          Description: <%= @listing.description %>
-          <br>
-          Price: £<%= @listing.price %>
-          <br> -->
 </body>
 </html>

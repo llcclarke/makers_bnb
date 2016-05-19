@@ -69,11 +69,12 @@ feature 'making a booking' do
     end
 
     scenario 'can only see available bookings' do
-      visit '/listings/search'
+      visit '/listing/search'
       search_available
       click_link 'Title1'
+      click_button 'Request Booking'
       make_booking
-      visit '/listings/search'
+      visit '/listing/search'
       search_available
       expect(page).to_not have_content 'Title1'
     end
