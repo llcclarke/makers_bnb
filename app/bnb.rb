@@ -5,6 +5,7 @@ require_relative 'data_mapper_setup'
 require_relative 'models/user'
 require_relative 'models/listing'
 require_relative 'models/booking'
+require_relative '../lib/booking_validation'
 
 
 class Bnb < Sinatra::Base
@@ -17,6 +18,7 @@ class Bnb < Sinatra::Base
 		def current_user
 			@current_user ||= User.first(id: session[:user_id])
 		end
+
 	end
 
 	get '/' do
@@ -112,7 +114,8 @@ class Bnb < Sinatra::Base
 	end
 
 	post '/bookings/new' do
-		if Booking.check_date(params[:check_in_date])
+			@booking_validation = BookingValidation.new
+		if @booking_validation.check_date(params[:check_in_date])
 			@current_user = User.first(id: session[:user_id])
 			@listing = Listing.first(id: session[:listing_id])
 			booking = Booking.create(check_in_date: params[:check_in_date],
