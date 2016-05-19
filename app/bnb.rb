@@ -92,6 +92,7 @@ class Bnb < Sinatra::Base
 
 	get '/listings/:id' do
 		session[:listing_id] = params[:id]
+		@bookings = Booking.all(listing_id: session[:listing_id])
 		@listing = Listing.first(id: session[:listing_id])
 		erb :listing
 	end

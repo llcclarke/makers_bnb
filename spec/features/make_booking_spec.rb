@@ -66,7 +66,15 @@ feature 'making a booking' do
       fill_in 'check_out_date', with: '20/10/2015'
       click_button 'Request'
       expect(page).to have_content 'Are you a time traveller?'
-
     end
 
+    scenario 'can only see available bookings' do
+      visit '/listings/search'
+      search_available
+      click_link 'Title1'
+      make_booking
+      visit '/listings/search'
+      search_available
+      expect(page).to_not have_content 'Title1'
+    end
 end
