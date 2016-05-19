@@ -127,7 +127,7 @@ class Bnb < Sinatra::Base
 			@listing.save
 			redirect '/confirmation'
 		else
-			flash.keep[:errors] = ['Your booking is invalid']
+			flash.keep[:errors] = ['Are you a time traveller?']
 			redirect '/bookings/new'
 		end
 	end
