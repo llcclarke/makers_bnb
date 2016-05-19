@@ -97,6 +97,14 @@ class Bnb < Sinatra::Base
 		erb :listing
 	end
 
+	get 'listings/search' do
+		erb :'listings/search'
+	end
+
+	post 'listings/results' do
+		erb :'listings/results'
+	end
+
 	# post '/confirm' do
 	# 	@listing = Listing.first(id: params[:id])
 	# 	@listing.update(:is_available => false)
