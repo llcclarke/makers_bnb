@@ -5,6 +5,7 @@ require_relative 'data_mapper_setup'
 require_relative 'models/user'
 require_relative 'models/listing'
 require_relative 'models/booking'
+require_relative '../lib/booking_validation'
 
 
 class Bnb < Sinatra::Base
@@ -17,6 +18,7 @@ class Bnb < Sinatra::Base
 		def current_user
 			@current_user ||= User.first(id: session[:user_id])
 		end
+
 	end
 
 	get '/' do
@@ -112,14 +114,17 @@ class Bnb < Sinatra::Base
 	end
 
 	post '/bookings/new' do
-		if Booking.check_date(params[:check_in_date])
-			@current_user = User.first(id: session[:user_id])
+			@booking_validation = BookingValidation.new
 			@listing = Listing.first(id: session[:listing_id])
+			@bookings = @listing.bookings
+			p @bookings
+		if @booking_validation.super_check?(params[:check_in_date], params[:check_out_date]) && @booking_validation.validation_loop(params[:check_in_date], params[:check_out_date], @bookings)
 			booking = Booking.create(check_in_date: params[:check_in_date],
 			check_out_date: params[:check_out_date])
-			@current_user.bookings << booking
+			current_user.bookings << booking
 			@listing.bookings << booking
 			@current_user.save
+			@listing.save
 			redirect '/confirmation'
 		else
 			flash.keep[:errors] = ['Are you a time traveller?']
