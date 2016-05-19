@@ -115,7 +115,7 @@ class Bnb < Sinatra::Base
 
 	post '/bookings/new' do
 			@booking_validation = BookingValidation.new
-		if @booking_validation.check_date(params[:check_in_date])
+		if @booking_validation.check_date?(params[:check_in_date])
 			@current_user = User.first(id: session[:user_id])
 			@listing = Listing.first(id: session[:listing_id])
 			booking = Booking.create(check_in_date: params[:check_in_date],
