@@ -6,15 +6,23 @@
   </head>
   <body>
     <ul id='listings'>
-        <li>
           Title: <%= @listing.title %>
+          <br>
           Description: <%= @listing.description %>
+          <br>
           Price: £<%= @listing.price %>
+          <br>
+          Unavailable dates:
+          <% @bookings.each do |booking| %>
+            <li>
+              <%= booking.check_in_date %> - <%= booking.check_out_date %>
+            </li>
+          <% end %>
+          <br>
             <form action='/bookings/new' method='get'>
           <input type='hidden' name='listing_id' value='<%= @listing.id %>'>
-          <input type='submit' value='Request Booking'>
-          </form>
-        </li>
+          <input type='submit' name='Request Booking' value='Request Booking'>
+        </form>
     </ul>
   </body>
 </html>

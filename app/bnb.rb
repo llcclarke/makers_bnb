@@ -94,8 +94,19 @@ class Bnb < Sinatra::Base
 
 	get '/listings/:id' do
 		session[:listing_id] = params[:id]
+		@bookings = Booking.all(listing_id: session[:listing_id])
 		@listing = Listing.first(id: session[:listing_id])
 		erb :listing
+	end
+
+	get '/listing/search' do
+		erb :'listings/search'
+	end
+
+	post '/listing/results' do
+		@booking_val = BookingValidation.new
+		@listings = @booking_val.listing_loop(params[:check_in_date], params[:check_out_date], Listing.all)
+		erb :'listings/results'
 	end
 
 	# post '/confirm' do

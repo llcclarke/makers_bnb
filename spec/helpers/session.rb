@@ -52,6 +52,12 @@ def create_listing3
     click_button 'Submit'
 end
 
+def search_available
+	fill_in 'check_in_date', with: '10/10/2016'
+	fill_in 'check_out_date', with: '20/10/2016'
+	click_button 'Search'
+end
+
 def make_booking
 	fill_in 'check_in_date', with: '10/10/2016'
 	fill_in 'check_out_date', with: '20/10/2016'
