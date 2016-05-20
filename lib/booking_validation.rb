@@ -13,11 +13,11 @@ class BookingValidation
     end
 
     def date_valid?(new_start, new_end, check_start, check_end)
-      check_start > new_end || check_end < new_start
+      Date.parse(check_start) > Date.parse(new_end) || Date.parse(check_end) < Date.parse(new_start)
     end
 
     def right_order?(new_start, new_end)
-      new_end > new_start
+      Date.parse(new_end) > Date.parse(new_start)
     end
 
     def super_check?(new_start, new_end)

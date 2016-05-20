@@ -71,6 +71,7 @@ feature 'making a booking' do
     scenario 'can only see available bookings' do
       visit '/listing/search'
       search_available
+      expect(page).to have_content('Title2')
       click_link 'Title1'
       click_button 'Request Booking'
       make_booking
