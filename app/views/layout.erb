@@ -23,15 +23,13 @@
 
 			    <!-- Collect the nav links, forms, and other content for toggling -->
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			      <ul class="nav navbar-nav">
-			      </ul>
-			      <ul class="nav navbar-nav navbar-right">
+			      	<ul class="nav navbar-nav navbar-right">
 							<% if current_user %>
 			      	<li>
-			      		<p class="navbar-text navbar-right move">Signed in as <a href="/" class="navbar-link"><%= current_user.name %></a></p>
+			      		<p class='navbar-text'>Signed in as <a href="/" class="navbar-link"><%= current_user.name %></a></p>
 			      	</li>
 			        <li>
-			        	<form class="navbar-form navbar-right move" method='post' action='/session'>
+			        	<form method='post' action='/session'>
 						  <div class="form-group">
 						    <input type='hidden' name='_method' value='delete'>
 							<input type="submit" value='Sign out'>
@@ -39,8 +37,19 @@
 						</form>
 
 			        </li>
+			        </ul>
 							<% end %>
-			      </ul>
+							<% unless current_user %>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href="/users/new">Sign Up</a></button>
+  <button type="button" class="btn btn-default"><a href="/session/new">Sign In</a></button>
+</div>
+
+		<% end %>
+
+
+
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
