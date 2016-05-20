@@ -5,13 +5,13 @@
 
 
 
-	<body>
+	<body bgcolor="#FF0000">
 		<% if flash[:errors] %>
 			<% flash[:errors].each do |error| %>
 				<%= error %>
 			<% end %>
 		<% end %>
-		
+
 		<% unless current_user %>
 			<form action='/users/new'>
 				<input type='submit' value='sign up'>
@@ -20,9 +20,51 @@
 				<input type='submit' value='sign in'>
 			</form>
 		<% end %>
+
+
+
+
+
+<div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+											<img src="cog.jpeg" alt="..." class="img-circle">
+                        <h3>About Us</h3>
+                        <p class="text-muted">text here.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+											<img src="clock.jpeg" alt="..." class="img-circle">
+                        <h3>Our Values</h3>
+                        <p class="text-muted">text here.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+											<img src="lightbulb.jpeg" alt="..." class="img-circle">
+                        <h3>title</h3>
+                        <p class="text-muted">text here.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <h3>Title</h3>
+                        <p class="text-muted">Text here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 	</body>
 
+<video control autoplay loop>
+<source src="index_video.mp4" type="video/mp4">
 
+</video>
 
 
 
