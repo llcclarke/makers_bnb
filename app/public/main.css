@@ -38,3 +38,7 @@ video {
 .index_text {
 	color: #fff;
 }
+
+#logo {
+	max-width: 30;
+}
