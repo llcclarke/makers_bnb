@@ -10,3 +10,21 @@ body {
 .img-circle{
 
 }
+
+.video-container {
+	overflow:hidden;
+  display:block;
+  height: 600px;
+}
+
+video {
+	position: relative; bottom: 220px
+}
+
+.video-keeper {
+}
+
+.row {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
